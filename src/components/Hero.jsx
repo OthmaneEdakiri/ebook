@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <div id="home" ref={home} style={{backgroundImage : `url(${heroBackground})`}} className="lg:h-[75vh] bg-no-repeat bg-cover bg-center relative hero">
       <div className="container h-full">
-        <div className="flex flex-wrap lg:pt-0 pt-[100px] sm:pt-[150px] items-center h-full z-10 relative">
+        <div className="flex flex-wrap lg:pt-0 pt-[160px] sm:pt-[150px] items-center h-full z-10 relative">
           <div className="text-box lg:w-1/2 w-full mb-[20px] lg:mb-[120px]">
             <h6 className="text-[20px] text-[#E9C46A] mb-[8px]">
               Introducing ebook
