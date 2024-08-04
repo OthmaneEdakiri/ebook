@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Unbounded', cursive;
+}
+
+/* Navbar */
+.navbar .logo-icon {
+    position: relative;
+    z-index: 2;
+}
+
+.navbar a.activeLink{
+    color: #E76F51!important;
+}
+
+.navbar .logo-icon::before {
+    position: absolute;
+    content: '';
+    height: 0;
+    width: 0;
+    border: 20px solid;
+    border-color: transparent transparent #E9C46A transparent;
+    transform: rotate(-10deg);
+    bottom: 10px;
+    left: 5px;
+    z-index: -1;
+}
+
+/* Hero */
+
+.hero::after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+}
+
+.hero::before {
+    position: absolute;
+    content: '';
+    height: 0;
+    width: 0;
+    border: 220px solid;
+    border-color: transparent white white transparent;
+    bottom: -25vh;
+    right: 0;
+    z-index: 2;
+}
+
+/* The Book */
+.book .activeLink{
+    background: #E76F51;
+    color: white;
+}
+
+/* Reviews */
+.review::before{
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+}
+
+/* conatct */
+
+.contact::after{
+    position: absolute;
+    content: '';
+    height: 0;
+    width: 0;
+    border: 230px solid;
+    border-color: white transparent transparent white;
+    top: 0;
+    left: 0;
+}
