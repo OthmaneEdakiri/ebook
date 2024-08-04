@@ -56,7 +56,7 @@ const Navbar = () => {
               <li key={navlink.id}>
                 <a
                   className={`${navlink.id == activeLink && 'activeLink'} font-bold text-[12px] p-[10px] m-[10px] text-white hover:text-[#F4A261] transition-colors tracking-[1px]`}
-                  href=""
+                  href={`#${navlink.id}`}
                 >
                   {navlink.title}
                 </a>
@@ -90,7 +90,7 @@ const Navbar = () => {
                   <li key={navlink.id}>
                     <a
                       className={`${navlink.id == activeLink && 'activeLink'} font-bold block text-[12px] p-[10px] text-white hover:text-[#F4A261] transition-colors tracking-[1px]`}
-                      href=""
+                      href={`#${navlink.id}`}
                     >
                       {navlink.title}
                     </a>

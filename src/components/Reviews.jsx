@@ -7,7 +7,7 @@ const Reviews = () => {
   const {sectionsRefs:{reviews : reviewsRef}} = UseNavbarContext()
 
   return (
-    <div ref={reviewsRef} className="reviews sm:py-[100px] py-[30px]">
+    <div id="reviews" ref={reviewsRef} className="reviews sm:py-[100px] py-[30px]">
       <div className="container">
         <h6 className="lg:text-[20px] text-[18px] text-[#E9C46A] mb-[8px] text-center">
           Reviews
