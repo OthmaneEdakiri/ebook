@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBookOpen, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { UseNavbarContext } from "../context/NavbarContext";
 import { navLinks } from "../constants";
 
 const Navbar = () => {
-
-  const {activeLink} = UseNavbarContext()
+  const { activeLink } = UseNavbarContext();
 
   const [toggle, setToggle] = useState(true);
   const [scrollY, setScrollY] = useState(null);
@@ -14,7 +13,19 @@ const Navbar = () => {
 
   const toggleHandler = () => setToggle((prev) => !prev);
 
+  const navbar = useRef(null)
+  const toggleButton = useRef(null)
+
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        event.target !== navbar.current &&
+        event.target !== toggleButton.current
+      ) {
+        setToggle(true);
+      }
+    };
+
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
@@ -25,13 +36,13 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScreenWith);
+    document.addEventListener('click', handleClickOutside);
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScreenWith);
+      document.removeEventListener('click', handleClickOutside);
     };
   }, []);
-
-
 
   return (
     <nav
@@ -55,7 +66,9 @@ const Navbar = () => {
             {navLinks.map((navlink) => (
               <li key={navlink.id}>
                 <a
-                  className={`${navlink.id == activeLink && 'activeLink'} font-bold text-[12px] p-[10px] m-[10px] text-white hover:text-[#F4A261] transition-colors tracking-[1px]`}
+                  className={`${
+                    navlink.id == activeLink && "activeLink"
+                  } font-bold text-[12px] p-[10px] m-[10px] text-white hover:text-[#F4A261] transition-colors tracking-[1px]`}
                   href={`#${navlink.id}`}
                 >
                   {navlink.title}
@@ -74,7 +87,7 @@ const Navbar = () => {
               Download
             </button>
             <button onClick={toggleHandler} className="text-white text-[30px]">
-              <FontAwesomeIcon icon={toggle ? faBars : faXmark} />
+              <FontAwesomeIcon ref={toggleButton} icon={toggle ? faBars : faXmark} />
             </button>
             <ul
               className={`absolute ${
@@ -84,12 +97,15 @@ const Navbar = () => {
               }  w-full flex flex-col  left-0 top-[88px] pb-[20px] ${
                 toggle && "hidden"
               }`}
+              ref={navbar}
             >
               <div className="container">
                 {navLinks.map((navlink) => (
                   <li key={navlink.id}>
                     <a
-                      className={`${navlink.id == activeLink && 'activeLink'} font-bold block text-[12px] p-[10px] text-white hover:text-[#F4A261] transition-colors tracking-[1px]`}
+                      className={`${
+                        navlink.id == activeLink && "activeLink"
+                      } font-bold block text-[12px] p-[10px] text-white hover:text-[#F4A261] transition-colors tracking-[1px]`}
                       href={`#${navlink.id}`}
                     >
                       {navlink.title}
